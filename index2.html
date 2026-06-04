@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bio Link</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('https://i.vgy.me/yRlqtf.png') no-repeat center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* lớp phủ */
+.overlay {
+    background: linear-gradient(180deg, rgba(255,0,150,0.3), rgba(0,0,0,0.6));
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* card */
+.card {
+    position: relative;
+    z-index: 2;
+    width: 320px;
+    padding: 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.08);
+    text-align: center;
+    color: white;
+    box-shadow: 0 0 25px rgba(255,0,150,0.4);
+    padding-top: 60px;
+}
+
+/* avatar */
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-top: -40px;
+    border: 3px solid white;
+    object-fit: cover;
+     box-shadow: 0 0 15px rgba(255,0,150,0.6);
+}
+
+/* username */
+.username {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff4dd2;
+    margin-top: 8px;
+    letter-spacing: 1px;
+}
+
+/* mô tả */
+.desc {
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 14px;
+    font-weight: 600; /* đậm hơn */
+
+    color: #ffd6f0;
+    margin: 14px 0;
+    line-height: 1.7;
+
+    text-align: center;
+
+    text-shadow: 0 0 8px rgba(255, 0, 150, 0.6);
+}
+
+/* button ngang */
+.social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin-top: 15px;
+}
+
+.social a {
+    width: 55px;
+    height: 55px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(145deg, #ff4dd2, #ff99dd);
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(255,0,150,0.6);
+}
+
+/* hover */
+.social a:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 20px rgba(255,0,150,1);
+}
+
+.social img {
+    width: 28px;
+}
+
+/* lượt xem */
+.views {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #ffb3ec;
+}
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 👈 QUAN TRỌNG */
+
+    width: 90%; /* 👈 giảm lại cho gọn */
+    margin: 0 auto; /* 👈 căn giữa */
+
+    padding: 10px 14px;
+    border-radius: 14px;
+
+    background: linear-gradient(135deg, #ff2ae3, #ff6ad5);
+    color: white;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    box-shadow: 0 4px 0 #6e276e;
+    transition: 0.25s;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px #ff4dd2;
+    }
+    to {
+        box-shadow: 0 0 25px #ff4dd2, 0 0 40px #ff99dd;
+    }
+}
+.card {
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.notice {
+    margin-top: 15px;
+    padding: 12px;
+
+    border-radius: 15px;
+    border: 2px solid #ff4dd2;
+
+    background: rgba(255, 0, 150, 0.15);
+
+    color: #fff;
+    font-size: 13px;
+    line-height: 1.5;
+
+    box-shadow: 0 0 15px rgba(255,0,150,0.5);
+    backdrop-filter: blur(5px);
+
+    animation: glowNotice 1.5s infinite alternate;
+}
+
+/* hiệu ứng viền sáng */
+@keyframes glowNotice {
+    from {
+        box-shadow: 0 0 10px #ff4dd2;
+    }
+    to {
+        box-shadow: 0 0 25px #ff4dd2, 0 0 40px #ff99dd;
+    }
+}
+.notice {
+    animation: glowNotice 1.5s infinite alternate, shake 3s infinite;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(1px); }
+    50% { transform: translateX(-1px); }
+    75% { transform: translateX(1px); }
+    100% { transform: translateX(0); }
+}
+.btn span {
+    flex: 1;
+    text-align: center; /* 👈 chữ luôn nằm giữa */
+}
+
+.btn img {
+    width: 26px;
+    height: 26px;
+}
+.btn:hover {
+    transform: translateY(3px) scale(1.02);
+    box-shadow: 0 2px 0 #6e276e, 0 0 15px rgba(255,0,150,0.6);
+}
+.username-box {
+    display: inline-block;
+    padding: 10px 18px;
+
+    border-radius: 15px;
+    background: linear-gradient(135deg, #ff2ae3, #ff6ad5);
+
+    box-shadow: 0 0 20px rgba(255,0,150,0.6);
+    margin-top: 10px;
+
+    animation: glowName 1.5s infinite alternate;
+}
+
+/* dòng tên */
+.name {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 1px;
+}
+
+/* dòng slogan */
+.tagline {
+    font-size: 11px;
+    margin-top: 3px;
+
+    color: #ffe6f7;
+    letter-spacing: 1px;
+
+    opacity: 0.9;
+}
+
+/* hiệu ứng glow */
+@keyframes glowName {
+    from {
+        box-shadow: 0 0 10px #ff2ae3;
+    }
+    to {
+        box-shadow: 0 0 25px #ff2ae3, 0 0 40px #ff6ad5;
+    }
+}
+.tagline {
+    animation: fadeText 2s infinite alternate;
+}
+
+@keyframes fadeText {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
+}
+.desc-box {
+    margin-top: 15px;
+    padding: 14px;
+
+    border-radius: 15px;
+    border: 2px solid #ff4dd2;
+
+    background: rgba(255, 0, 150, 0.12);
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.7;
+
+    color: #ffd6f0;
+    text-align: center;
+
+    box-shadow: 0 0 15px rgba(255,0,150,0.5);
+    backdrop-filter: blur(6px);
+
+    animation: glowDesc 1.5s infinite alternate;
+}
+
+/* hiệu ứng glow */
+@keyframes glowDesc {
+    from {
+        box-shadow: 0 0 10px #ff4dd2;
+    }
+    to {
+        box-shadow: 0 0 25px #ff4dd2, 0 0 40px #ff99dd;
+    }
+}
+.gate {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.gate-box {
+    text-align: center;
+    color: white;
+    background: rgba(255, 0, 150, 0.15);
+    padding: 25px;
+    border-radius: 18px;
+    border: 2px solid #ff4dd2;
+    box-shadow: 0 0 20px rgba(255,0,150,0.6);
+    animation: pop 0.6s ease;
+}
+
+.gate-box button {
+    margin-top: 15px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg,#ff2ae3,#ff6ad5);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@keyframes pop {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="card">
+
+    <img class="avatar" src="https://i.vgy.me/B3Zj1x.png">
+
+    <div class="username-box">
+    <div class="name">TUNG DUONG SUPORT</div>
+    <div class="tagline">UY TÍN - AN TOÀN - CHẤT LƯỢNG</div>
+</div>
+
+    <div class="desc-box">
+    TUNGDUONG xin chào mọi người<br>
+    Hỗ trợ kéo tâm full mọi máy<br>
+    Mua đồ chơi Free Fire liên hệ<br>
+    Cảm ơn mọi người đã ủng hộ ❤️
+</div>
+
+    <div class="buttons">
+
+        <!-- ZALO -->
+    <a href="https://zalo.me/0966127411" class="btn">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg">
+        <span>ZALO THÀNH LIÊM</span>
+    </a>
+    <!-- ZALO -->
+    <a href="https://zalo.me/0352035713" class="btn">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg">
+        <span>ZALO TUNGDUONG</span>
+    </a>
+
+    <!-- FACEBOOK -->
+    <a href="https://www.facebook.com/letung.duong.636554" class="btn">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">
+        <span>FACEBOOK TUNGDUONG</span>
+    </a>
+<!-- ZALO NHÓM SHARE FILE -->
+<a href="https://zalo.me/g/yqhom6kfanaokzamoewa" class="btn">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg">
+    <span>NHÓM ZALO SHARE FILE</span>
+</a>
+<!-- BẢNG GIÁ DỊCH KÉO TÂM -->
+<a href="https://letungduongtrumhack-cell.github.io/b-ng-gi-ob53/
+" class="btn">
+    <img src="https://i.vgy.me/B3Zj1x.png">
+    <span>BẢNG GIÁ DỊCH VỤ KÉO TÂM </span>
+</a>
+<div class="notice">
+⚠️ DUY NHẤT CHỈ DÙNG 1 SỐ TÀI KHOẢN <br>
+🏦 TECHCOMBANK: <b>6868683325</b><br>
+👤 LE TUNG DUONG
+</div>
+<div id="musicGate" class="gate">
+    <div class="gate-box">
+        <h2>🎵 Bấm để tiếp tục</h2>
+        <p>Tduong chúc tất cả mn nhiều sức khỏe</p>
+        <button onclick="enterSite()">CLICK ĐỂ VÀO</button>
+    </div>
+</div>
+</div>
+
+</div>
+<!-- NHẠC NỀN -->
+<audio id="bgmusic" loop>
+   <source src="https://files.catbox.moe/qv3jrx.mp3" type="audio/mpeg">
+</audio>
+<script>
+const music = document.getElementById("bgmusic");
+
+/* chạy khi load */
+window.addEventListener("load", () => {
+    music.volume = 0.4;
+    music.play().catch(() => {});
+});
+
+/* fallback mobile */
+document.addEventListener("click", () => {
+    music.play();
+}, { once: true });
+</script>
+<!-- HIỆU ỨNG TUYẾT -->
+<script>
+function createSnowflake() {
+    const snow = document.createElement("div");
+    snow.innerHTML = "❄";
+    snow.style.position = "fixed";
+    snow.style.top = "-10px";
+    snow.style.left = Math.random() * window.innerWidth + "px";
+    snow.style.fontSize = Math.random() * 6 + 6 + "px";
+    snow.style.color = "white";
+    snow.style.opacity = Math.random();
+    snow.style.zIndex = "1";
+    snow.style.pointerEvents = "none";
+
+    document.body.appendChild(snow);
+
+    let fallSpeed = Math.random() * 5 + 4;
+
+    function fall() {
+        let top = parseFloat(snow.style.top); // 👈 phải để lên trước
+
+        snow.style.top = top + fallSpeed + "px";
+        snow.style.left =
+            parseFloat(snow.style.left) + Math.sin(top / 20) + "px";
+
+        if (top > window.innerHeight) {
+            snow.remove();
+        } else {
+            requestAnimationFrame(fall);
+        }
+    }
+
+    fall();
+}
+
+setInterval(createSnowflake, 500);
+function enterSite() {
+    const music = document.getElementById("bgmusic");
+
+    music.volume = 0.4;
+    music.play().catch(() => {});
+
+    document.getElementById("musicGate").style.display = "none";
+}
+</script>
+
+</body>
+</html>
